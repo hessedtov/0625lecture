@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공개강좌 안내 — 디지털 생태계 속 소통과 협업</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1B2D4F;
+    --blue:    #2E5FA3;
+    --sky:     #5B9BD5;
+    --mint:    #3AA68A;
+    --sand:    #F7F4EF;
+    --white:   #FFFFFF;
+    --gray-1:  #F0EDE8;
+    --gray-2:  #D6D0C8;
+    --gray-3:  #8A8178;
+    --text:    #1E1A16;
+    --text-2:  #4A453F;
+    --gone:    #2E7D5E;
+    --ai:      #1E4B8F;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(94,155,213,0.15);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(58,166,138,0.12);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sky);
+    border: 1px solid rgba(91,155,213,0.4);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .meta-chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sky);
+    flex-shrink: 0;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--gray-2);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--navy);
+    display: inline-block;
+  }
+
+  /* ── INFO TABLE ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 480px) { .info-grid { grid-template-columns: 1fr; } }
+  .info-item {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid var(--gray-2);
+  }
+  .info-item .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .info-item.full { grid-column: 1 / -1; }
+
+  /* ── PREP LIST ── */
+  .prep-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .prep-item {
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--gray-2);
+    padding: 16px 18px 16px 56px;
+    position: relative;
+  }
+  .prep-num {
+    position: absolute;
+    left: 16px; top: 16px;
+    width: 28px; height: 28px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .prep-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .prep-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .prep-desc li {
+    list-style: none;
+    padding-left: 14px;
+    position: relative;
+    margin-top: 3px;
+  }
+  .prep-desc li::before {
+    content: '–';
+    position: absolute; left: 0;
+    color: var(--gray-3);
+  }
+  .badge-warn {
+    display: inline-block;
+    font-size: 11px;
+    background: #FEF3C7;
+    color: #92400E;
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin-left: 6px;
+    font-weight: 500;
+    vertical-align: middle;
+  }
+
+  /* ── OUTLINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .tl-item {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .tl-left {
+    width: 72px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 18px;
+  }
+  .tl-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    background: var(--sand);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .tl-line {
+    width: 2px;
+    flex: 1;
+    background: var(--gray-2);
+    margin-top: 4px;
+  }
+  .tl-item:last-child .tl-line { display: none; }
+
+  .tl-time {
+    font-size: 11px;
+    color: var(--gray-3);
+    font-weight: 500;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tl-right {
+    flex: 1;
+    padding: 12px 0 24px 16px;
+  }
+
+  .tl-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .tl-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .tag-intro { background: #EDE9FE; color: #4C1D95; }
+  .tag-ai    { background: #DBEAFE; color: #1E3A8A; }
+  .tag-gone  { background: #D1FAE5; color: #064E3B; }
+  .tag-end   { background: #FEE2E2; color: #7F1D1D; }
+
+  .tl-block-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .tl-card {
+    background: var(--white);
+    border: 1px solid var(--gray-2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tl-card + .tl-card { margin-top: 8px; }
+
+  .card-head {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--gray-1);
+  }
+  .card-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+    color: var(--white);
+  }
+  .num-ai   { background: var(--ai); }
+  .num-gone { background: var(--gone); }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+  .card-duration {
+    font-size: 11px;
+    color: var(--gray-3);
+    white-space: nowrap;
+  }
+  .card-body { padding: 10px 14px; }
+  .card-rows { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .card-row {
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    line-height: 1.5;
+  }
+  .card-row::before {
+    content: '·';
+    color: var(--gray-3);
+    flex-shrink: 0;
+  }
+  .card-quote {
+    font-size: 12px;
+    color: var(--gray-3);
+    font-style: italic;
+    margin-top: 4px;
+    padding-left: 12px;
+    border-left: 2px solid var(--gray-2);
+    line-height: 1.5;
+  }
+  .tool-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .tp-gemini  { background: #DBEAFE; color: #1E40AF; }
+  .tp-perp    { background: #EDE9FE; color: #4C1D95; }
+  .tp-gpt     { background: #D1FAE5; color: #065F46; }
+  .tp-claude  { background: #FEE2E2; color: #7F1D1D; }
+  .tp-gone    { background: #D1FAE5; color: #064E3B; }
+
+  .card-row-quote {
+    font-size: 12px;
+    color: var(--gray-3);
+    font-style: italic;
+    padding: 4px 0 0 16px;
+    display: block;
+  }
+
+  /* ── TOOL LEGEND ── */
+  .tool-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--gray-2);
+  }
+  .tool-legend-item {
+    font-size: 12px;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    font-size: 12px;
+    padding: 24px;
+  }
+  .footer strong { color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">공개강좌 안내</div>
+  <div class="hero-title">디지털 생태계 속 소통과 협업</div>
+  <div class="hero-sub">G-ONE과 생성형 AI, 직접 써봅니다</div>
+  <div class="hero-meta">
+    <div class="meta-chip"><span class="dot"></span>2026. 6. 25.(목) 14:00~16:00</div>
+    <div class="meta-chip"><span class="dot"></span>화성오산교육지원청 성장관 403호</div>
+    <div class="meta-chip"><span class="dot"></span>강사: 숲속초 정승호 (행정7급)</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 강의 정보 -->
+  <div class="section">
+    <div class="section-label">Lecture Info</div>
+    <div class="section-title">강의 정보</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">자율연수팀</div>
+        <div class="value">디지털 대전환, 배움과 성장을 촉진하는 조직문화 리더</div>
+      </div>
+      <div class="info-item">
+        <div class="label">강의 주제</div>
+        <div class="value">디지털 대전환 시대, 조직 리더의 소통·협업·생성형AI 활용 역량 강화</div>
+      </div>
+      <div class="info-item">
+        <div class="label">일시</div>
+        <div class="value">2026. 6. 25.(목) 14:00 ~ 16:00</div>
+      </div>
+      <div class="info-item">
+        <div class="label">장소</div>
+        <div class="value">화성오산교육지원청 성장관 403호</div>
+      </div>
+      <div class="info-item">
+        <div class="label">대상</div>
+        <div class="value">행정실장(사무관) 약 20명</div>
+      </div>
+      <div class="info-item">
+        <div class="label">방법</div>
+        <div class="value">대면 강의 + 실습</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 사전 준비 -->
+  <div class="section">
+    <div class="section-label">Preparation</div>
+    <div class="section-title">사전 준비 사항</div>
+    <ul class="prep-list">
+      <li class="prep-item">
+        <div class="prep-num">1</div>
+        <div class="prep-title">노트북 지참</div>
+      </li>
+      <li class="prep-item">
+        <div class="prep-num">2</div>
+        <div class="prep-title">구글 계정 로그인 확인</div>
+        <ul class="prep-desc">
+          <li>Gemini, ChatGPT 접속에 필요합니다.</li>
+          <li>강의 당일 ID·비밀번호를 알고 오시면 됩니다.</li>
+        </ul>
+      </li>
+      <li class="prep-item">
+        <div class="prep-num">3</div>
+        <div class="prep-title">G-ONE 접속 환경 준비</div>
+        <ul class="prep-desc">
+          <li>공인인증서 준비</li>
+          <li>노트북 EVPN 설치 및 접속 가능 여부 사전 확인</li>
+        </ul>
+      </li>
+      <li class="prep-item">
+        <div class="prep-num">4</div>
+        <div class="prep-title">스마트폰 지참 <span class="badge-warn">당일 앱 설치 안내 예정</span></div>
+        <ul class="prep-desc">
+          <li>모바일 실습 파트가 있습니다.</li>
+          <li>Gemini·ChatGPT 앱은 유사 앱이 많아 당일 강사 안내에 따라 함께 설치합니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 강의 개요 -->
+  <div class="section">
+    <div class="section-label">Outline</div>
+    <div class="section-title">강의 개요</div>
+
+    <div class="timeline">
+
+      <!-- 도입 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot"></div>
+          <div class="tl-line"></div>
+          <div class="tl-time">14:00<br>15분</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <span class="tl-tag tag-intro">도입</span>
+            <span class="tl-block-title">AI, 어렵지 않습니다</span>
+          </div>
+          <div class="tl-card">
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">AI는 카톡처럼 됩니다 — 지금이 배울 때</li>
+                <li class="card-row">관리자가 AI를 더 잘 쓸 수 있는 이유<span class="card-row-quote">부하직원 지시 경험 = AI 활용 능력</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1부 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="border-color: var(--ai); background: #DBEAFE;"></div>
+          <div class="tl-line"></div>
+          <div class="tl-time">14:15<br>50분</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <span class="tl-tag tag-ai">1부</span>
+            <span class="tl-block-title">생성형 AI 직접 해봅니다</span>
+          </div>
+
+          <div class="tl-card">
+            <div class="card-head">
+              <div class="card-num num-ai">①</div>
+              <div class="card-title">첫 접속 + 잘 시키는 법</div>
+              <div class="card-duration">10분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">Gemini·ChatGPT 접속 실습</li>
+                <li class="card-row">상황·요청·형식 3요소로 원하는 결과 뽑기</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-card" style="margin-top:8px;">
+            <div class="card-head">
+              <div class="card-num num-ai">②</div>
+              <div class="card-title">행정실 업무에 바로 쓰기</div>
+              <div class="card-duration">20분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">
+                  급여·주휴일 계산
+                  <span class="tool-pill tp-gemini">Gemini</span>
+                  <span class="card-row-quote">"주무관님, 이 계산 맞아요?"</span>
+                </li>
+                <li class="card-row">
+                  규정 검색·비교
+                  <span class="tool-pill tp-perp">Perplexity</span>
+                  <span class="card-row-quote">"주무관님, 이 규정 확실해요?"</span>
+                </li>
+                <li class="card-row">
+                  회의 안건 구조화·민원 답변 초안
+                  <span class="tool-pill tp-gpt">ChatGPT</span>
+                  <span class="card-row-quote">"나 때는 다 직접 썼는데..."</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-card" style="margin-top:8px;">
+            <div class="card-head">
+              <div class="card-num num-ai">③</div>
+              <div class="card-title">가정에서도 바로 씁니다</div>
+              <div class="card-duration">10분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">여행·건강·자녀 상담·문자 초안 실습</li>
+                <li class="card-row">스마트폰으로 직접 해보기</li>
+              </ul>
+              <div class="card-quote">"이 약 먹어도 되나?" &nbsp;/&nbsp; "퇴직 준비로 경제 계획은?" &nbsp;/&nbsp; "우리 가족이 더 행복해지려면?"</div>
+            </div>
+          </div>
+
+          <div class="tl-card" style="margin-top:8px;">
+            <div class="card-head">
+              <div class="card-num num-ai">④</div>
+              <div class="card-title">이런 것도 됩니다 — 웹앱 생성 시연</div>
+              <div class="card-duration">10분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">투표·설문 페이지 즉석 생성 <span class="tool-pill tp-claude">Claude</span></li>
+                <li class="card-row">직원이 AI를 쓸 때 리더의 자세</li>
+              </ul>
+              <div class="card-quote">"코딩 몰라도 됩니다. 말로 시키면 됩니다."</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2부 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="border-color: var(--gone); background: #D1FAE5;"></div>
+          <div class="tl-line"></div>
+          <div class="tl-time">15:05<br>45분</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <span class="tl-tag tag-gone">2부</span>
+            <span class="tl-block-title">G-ONE으로 소통·협업하기</span>
+          </div>
+
+          <div class="tl-card">
+            <div class="card-head">
+              <div class="card-num num-gone">⑤</div>
+              <div class="card-title">기존 메신저 vs G-ONE 워크스페이스</div>
+              <div class="card-duration">20분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">기존 메신저의 한계 → G-ONE이 다른 점</li>
+                <li class="card-row">3년 보관 업무 아카이브, 채널별 분리</li>
+                <li class="card-row">메신저 Copilot — AI 대화 요약·메시지 다듬기 실습</li>
+              </ul>
+              <div class="card-quote">"이제 어디서 메신저를 켜도 동일하네!"</div>
+            </div>
+          </div>
+
+          <div class="tl-card" style="margin-top:8px;">
+            <div class="card-head">
+              <div class="card-num num-gone">⑥</div>
+              <div class="card-title">일정·할일·드라이브·초안생성 AI</div>
+              <div class="card-duration">25분</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">일정 등록으로 참석여부 취합 3분 완성 실습</li>
+                <li class="card-row">할일 뷰 — 내가 시킨 업무 진행상황 추적<span class="card-row-quote">"이 직원이 해야 할 일이 언제까지더라?"</span></li>
+                <li class="card-row">초안생성 AI — 경기도교육청 서식으로 공문 초안 실습<span class="card-row-quote">"우리 규정 안에서만 답해줄 수는 없나?"</span></li>
+                <li class="card-row">드라이브 — 인사이동 때 파일 안 날리는 법<span class="card-row-quote">"USB 챙겨 다니기 귀찮은데..."</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 마무리 -->
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot" style="border-color: #DC2626; background: #FEE2E2;"></div>
+          <div class="tl-line"></div>
+          <div class="tl-time">15:50<br>10분</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-header">
+            <span class="tl-tag tag-end">마무리</span>
+            <span class="tl-block-title">오늘 배운 것, 내일 한 가지만</span>
+          </div>
+          <div class="tl-card">
+            <div class="card-body">
+              <ul class="card-rows">
+                <li class="card-row">도구별 역할 정리 한 장</li>
+                <li class="card-row">핵심 메시지 3줄</li>
+                <li class="card-row">질문 받기</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <!-- 도구 범례 -->
+    <div class="tool-legend">
+      <div class="tool-legend-item"><span class="tool-pill tp-gemini">Gemini</span> 계산·일상 질문</div>
+      <div class="tool-legend-item"><span class="tool-pill tp-perp">Perplexity</span> 규정·최신 정보 검색</div>
+      <div class="tool-legend-item"><span class="tool-pill tp-gpt">ChatGPT</span> 문서·안건·답변 초안</div>
+      <div class="tool-legend-item"><span class="tool-pill tp-claude">Claude</span> 창작·웹앱 생성</div>
+      <div class="tool-legend-item"><span class="tool-pill tp-gone">G-ONE</span> 조직 소통·협업</div>
+    </div>
+
+  </div><!-- /section -->
+
+</div><!-- /container -->
+
+<div class="footer">
+  <strong>숲속초등학교 정승호</strong> &nbsp;|&nbsp; 화성오산교육지원청 공개강좌 &nbsp;|&nbsp; 2026. 6. 25.
+</div>
+
+</body>
+</html>
